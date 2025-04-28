@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  comparavuelos:
+    build: ./comparavuelos
+    ports:
+      - "8000:8000"
+    depends_on:
+      - proveedor1vuelos
+      - proveedor2vuelos
+      - proveedor3vuelos
+      - cachevuelos
+
+  proveedor1vuelos:
+    build: ./proveedor1vuelos
+    ports:
+      - "8001:8001"
+
+  proveedor2vuelos:
+    build: ./proveedor2vuelos
+    ports:
+      - "8002:8002"
+
+  proveedor3vuelos:
+    build: ./proveedor3vuelos
+    ports:
+      - "8003:8003"
+
+  cachevuelos:
+    build: ./cachevuelos
+    ports:
+      - "8004:8004"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - comparavuelos
